@@ -1,0 +1,397 @@
+/* TODO
+ * rem/em everything
+ */
+
+/* Config */
+:root {
+    --text-color: #D0D0D0;
+    /* 
+     * blue: #449bff;
+     * lime: #8fff44; 
+     */
+    --link-color: #80e53d;
+    /* purple: #8344ff; */
+    --visited-link-color: #edac3d;
+    --background: #202020;
+    --highlight-background: #2F2F2F;
+    --table-border-color: #888;
+    --table-border-width: 0.1rem;
+    --code-background: #2F2F2F;
+    --inline-code-background: #303030;
+    --enum-color: #a00080;
+    --number-color: #ffb54b;
+    --comment-color: #62b538;
+    --operator-color: var(--text-color);
+    --keyword-color: #a32828;
+    --string-color: #e4c461;
+    --builtin-type-color: #64e502;
+}
+
+/* MW generated properties clearing */
+
+/* Hide page header, navigation, footer and other elements
+ * since we absolutely don't want them in our layout.
+ */
+#mw-page-base, #mw-head-base, #mw-head, #footer,
+#top, .mw-indicators, #jump-to-nav, .visualClear,
+p > span.tpl-vte, div > span.tpl-vte, br {
+    display: none;
+}
+
+/* Overwrite styles to defaults */
+div#mw-panel {
+    position: relative;
+}
+
+div#mw-navigation div.portal, 
+div#mw-navigation div#p-navigation.portal,
+#mw-panel,
+div#mw-panel div.portal div.body,
+div#mw-panel div#p-navigation.portal div.body,
+div#mw-panel div.portal div.body ul,
+div#mw-panel div.portal div.body ul li,
+div#mw-panel div.portal h3,
+#content,
+.mw-body .firstHeading,
+#contentSub,
+.catlinks,
+.mw-body-content h2,
+dl, dt, .mw-content-ltr dd,
+.mw-body-content,
+.mw-body-content p {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-image: none;
+    font-size: 1em;
+}
+
+/* Reset min-width becuase something apparently sets it and breaks the layout of the page. */
+div#content.mw-body {
+   min-width: 0; 
+}
+
+html, body {
+    height: auto;
+    max-width: 100vw;
+}
+
+/* Sanity reset */
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    line-height: 150%;
+}
+
+
+/* Actual CSS styles */
+
+body {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: stretch;
+}
+
+#content {
+    flex: 1 1 0;
+    padding: 30px 30px 30px 10px;
+}
+
+#mw-navigation {
+    flex: 0 0 16rem;
+}
+
+
+/* Colors */
+
+a, .mw-body-content a.external,
+#mw-panel .portal a /* navigation panel */ {
+    color: #80e53d !important;
+}
+
+a:visited, .mw-body-content a.external:visited,
+#mw-panel .portal a:visited /* navigation panel */ {
+    color: var(--visited-link-color) !important;
+}
+
+.mw-parser-output,
+div#footer ul li,
+#toc .tocnumber,
+div#mw-panel div.portal h3,
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+}
+
+
+/* Navigation sidebar */
+
+.mw-wiki-logo {
+    filter: invert(100%);
+}
+
+div#mw-panel div.portal,
+div#mw-panel div#p-navigation.portal {
+    padding: 12px 0 0 15px;
+}
+
+div#mw-panel div.portal h3 {
+    font-size: 1.6rem;
+}
+
+div#mw-panel div.portal div.body,
+div#mw-panel div#p-navigation.portal div.body {
+    font-size: 80%;
+}
+
+
+/* Content */
+
+body, #content {
+    background-color: var(--background);
+}
+
+#contentSub {
+    font-size: 80%;
+}
+
+#mw-content-text {
+    padding: 1rem 0;
+}
+
+.mw-body-content p, pre, dl, .funcdef, .catlinks,
+.mw-parser-output > div:not([class]), /* warnings, recommendations, etc. */ 
+.mw-highlight, table.wikitable {
+    /* 100% - width of the infobox - fake padding */
+    max-width: calc(100% - 18em - 15px); 
+}
+
+.mw-highlight > pre {
+    max-width: 100%;
+}
+
+.mw-body .firstHeading {
+    font-size: 2.6rem;
+}
+
+.mw-body-content h2 {
+    padding: 1rem 0 0;
+    font-size: 2.2rem;
+}
+
+.mw-body-content p {
+    padding-bottom: 0.5rem;
+}
+
+.mw-body-content p:empty {
+    padding: 0;
+}
+
+.mw-body-content p > br[style] {
+    display: none;
+}
+
+dl {
+    padding-bottom: 0.5rem;
+}
+
+dt {
+    padding-top: 0.2rem;
+}
+
+.mw-content-ltr dd {
+    padding-left: 1.5rem;
+}
+
+/* warnings, recommendations, etc. */ 
+.mw-parser-output > div:not([class])[style~="margin-left:"] {
+    margin: 0 !important;
+    padding-left: 3rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Infobox 
+ * All of its styles are inline, hence the !importants.
+ */
+.infobox {
+    width: 18em !important;
+    margin: 0 !important;
+    /* Elements in the table already have bottom padding */
+    padding-bottom: 0 !important;
+    border: none !important;
+    font-size: 100% !important;
+    background-color: var(--highlight-background) !important;
+}
+
+.infobox caption {
+    font-size: 100% !important;
+}
+
+.infobox tbody {
+    font-size: 80% !important;
+}
+
+.infobox td {
+    text-align: right;
+}
+
+/* wikitable */
+
+table.wikitable {
+    color: var(--text-color);
+    background-color: var(--background);
+    margin: 0;
+}
+
+table.wikitable tr th {
+    background-color: var(--highlight-background);
+}
+
+table.wikitable,
+table.wikitable tbody tr th,
+table.wikitable tbody tr td {
+    border: var(--table-border-width) solid var(--table-border-color);
+}
+
+table.wikitable + p {
+    padding-top: 0.5rem;
+}
+
+/* Category links */
+.catlinks, .side-list, .side-list-contents, #toc {
+    background-color: var(--highlight-background);
+    border: none;
+}
+
+.catlinks {
+    padding: 0.5rem 1rem;
+}
+
+/* Side list */
+.side-list {
+    margin: 1em 0;
+}
+
+.side-list hr {
+    display: none;
+}
+
+.side-list div:first-child {
+    padding: 3px 7px;
+}
+
+.side-list .side-list-contents {
+    border: none;
+    border-top: 2px solid #505050;
+}
+
+.side-list-contents ul {
+    list-style-type: disc;
+    list-style-image: none;
+}
+
+/* stub (great name for the TODO section) */
+.stub {
+    background-color: #2F2F2F !important;
+    border: none !important;
+    padding: 2px 5px;
+}
+
+.stub td {
+    padding: 0;
+}
+
+/* Inline code */
+
+.tpl-code {
+    background-color: var(--inline-code-background);
+    padding: 0 3px;
+}
+
+.tpl-enum {
+    background-color: transparent;
+    color: var(--enum-color);
+}
+
+/* Code block */
+
+pre {
+    background-color: var(--code-background);
+    padding: 0.5rem 1rem;
+    border: none;
+    color: var(--text-color);
+    line-height: 1.5rem;
+}
+
+.mw-body-content pre + p {
+    padding-top: 0.5rem;
+}
+
+pre .tpl-code {
+    background-color: transparent;
+}
+
+/* Code highlighting */
+
+.mw-highlight {
+    padding-bottom: 0.5rem;
+    /* code blocks glitch when there's side-list on the right and show white background */
+    background-color: transparent;
+}
+
+.mw-highlight pre .mi {
+    color: var(--number-color);
+}
+
+.mw-highlight pre .c1 {
+    color: var(--comment-color);
+}
+
+.mw-highlight pre .o {
+    color: var(--operator-color);
+}
+
+.mw-highlight pre .k {
+    color: var(--keyword-color);
+}
+
+.mw-highlight pre .s {
+    color: var(--string-color);
+}
+
+.mw-highlight pre .kt {
+    color: var(--builtin-type-color);
+}
+
+/* Function definition */
+
+.funcdef {
+    padding-left: 1rem;
+    overflow-wrap: break-word;
+    background: var(--code-background);
+    border-color: var(--link-color);
+}
+
+.funcdef p {
+    padding: 0;
+}
+
+.funcdef + p {
+    padding-top: 0.5rem;
+}
+
+.funcdef + dl {
+    padding-top: 0.5rem;
+}
+
+.funcdef .tpl-code {
+    background-color: transparent;
+}
