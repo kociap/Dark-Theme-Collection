@@ -1,0 +1,74 @@
+#mw-content-text {
+    padding: 0;
+}
+
+.mw-parser-output ul {
+    padding-left: 1em;
+}
+
+.mw-parser-output > p {
+    display: none;
+}
+
+.mw-parser-output div {
+    padding: 0;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.mw-body-content .mw-parser-output > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 0 1em 0 !important;
+}
+
+.mw-parser-output > div > div {
+    background: var(--highlight-background);
+}
+
+.mw-parser-output > div .floatright {
+    padding-left: 1em;
+    filter: invert(100%);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.mw-parser-output tr {
+    padding-bottom: 1em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.mw-parser-output table:last-of-type tr {
+    padding: 0;
+}
+
+.mw-parser-output tr > td {
+    /* 3 elements with 1em spacing in-between */
+    flex: 0 1 calc((100% - 2em) / 3);
+}
+    
+.mw-parser-output table:last-of-type tr > td {
+    /* 2 elements with 1 em spacing between */
+    flex: 0 1 calc(50% - 0.5em);
+}
+
+.mw-parser-output td > div {
+    width: 100% !important;
+    height: 100%;
+    background: var(--highlight-background);
+}
+
+.mw-parser-output div h2 {
+    padding: 5px 10px !important;
+    border: none !important;
+    background: var(--header-background) !important;
+}
+
+.mw-parser-output td > div > div {
+    padding: 5px 15px !important;
+}

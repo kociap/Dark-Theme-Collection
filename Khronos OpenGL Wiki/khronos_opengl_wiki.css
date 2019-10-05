@@ -1,19 +1,20 @@
 /* TODO
- * rem/em everything
- */
+    * rem/em everything
+    */
 
 /* Config */
 :root {
     --text-color: #D0D0D0;
     /* 
-     * blue: #449bff;
-     * lime: #8fff44; 
-     */
+        * blue: #449bff;
+        * lime: #8fff44; 
+        */
     --link-color: #80e53d;
     /* purple: #8344ff; */
     --visited-link-color: #edac3d;
     --background: #202020;
     --highlight-background: #2F2F2F;
+    --header-background: #4A4A4A;
     --table-border-color: #888;
     --table-border-width: 0.1rem;
     --code-background: #2F2F2F;
@@ -31,8 +32,8 @@
 /* MW generated properties clearing */
 
 /* Hide page header, navigation, footer and other elements
- * since we absolutely don't want them in our layout.
- */
+    * since we absolutely don't want them in our layout.
+    */
 #mw-page-base, #mw-head-base, #mw-head, #footer,
 #top, .mw-indicators, #jump-to-nav, .visualClear,
 p > span.tpl-vte, div > span.tpl-vte, br {
@@ -50,6 +51,8 @@ div#mw-navigation div#p-navigation.portal,
 div#mw-panel div.portal div.body,
 div#mw-panel div#p-navigation.portal div.body,
 div#mw-panel div.portal div.body ul,
+ul, .mw-content-ltr ul,
+ol, .mw-content-ltr ol,
 div#mw-panel div.portal div.body ul li,
 div#mw-panel div.portal h3,
 #content,
@@ -68,9 +71,14 @@ dl, dt, .mw-content-ltr dd,
     font-size: 1em;
 }
 
+/* Should make all markers deault to text color */
+ul {
+    list-style-image: none;
+}
+
 /* Reset min-width becuase something apparently sets it and breaks the layout of the page. */
 div#content.mw-body {
-   min-width: 0; 
+    min-width: 0; 
 }
 
 html, body {
@@ -98,6 +106,13 @@ body {
 
 /* Actual CSS styles */
 
+/* Default list styles */
+ul, .mw-content-ltr ul, 
+ol, .mw-content-ltr ol {
+    padding-left: 1.5em;
+}
+
+
 body {
     display: flex;
     flex-direction: row-reverse;
@@ -116,16 +131,6 @@ body {
 
 /* Colors */
 
-a, .mw-body-content a.external,
-#mw-panel .portal a /* navigation panel */ {
-    color: #80e53d !important;
-}
-
-a:visited, .mw-body-content a.external:visited,
-#mw-panel .portal a:visited /* navigation panel */ {
-    color: var(--visited-link-color) !important;
-}
-
 .mw-parser-output,
 div#footer ul li,
 #toc .tocnumber,
@@ -133,6 +138,18 @@ div#mw-panel div.portal h3,
 h1, h2, h3, h4, h5, h6,
 #contentSub {
     color: var(--text-color);
+}
+
+a, .mw-body-content a.external,
+#mw-panel .portal a, /* navigation panel */
+.toc a .toctext /* override */{
+    color: #80e53d !important;
+}
+
+a:visited, .mw-body-content a.external:visited,
+#mw-panel .portal a:visited, /* navigation panel */
+.toc a:visited .toctext /* override */{
+    color: var(--visited-link-color) !important;
 }
 
 
@@ -179,9 +196,10 @@ body, #content {
 
 .mw-body-content p, pre, dl, .funcdef, .catlinks,
 .mw-parser-output > div:not([class]), /* warnings, recommendations, etc. */ 
-.mw-highlight, .mw-parser-output > table.wikitable {
+.mw-highlight, .mw-parser-output > table.wikitable,
+.mw-parser-output > ul, .mw-parser-output > ol {
     /* 100% - width of the infobox - fake padding */
-    max-width: calc(100% - 18em - 15px); 
+    max-width: calc(100% - 18em - 1em); 
 }
 
 .mw-highlight > pre {
@@ -239,8 +257,8 @@ dt {
 }
 
 /* Infobox 
- * All of its styles are inline, hence the !importants.
- */
+    * All of its styles are inline, hence the !importants.
+    */
 .infobox {
     width: 18em !important;
     margin: 0 !important;
@@ -336,6 +354,16 @@ table.wikitable + p {
     padding: 0 3px;
 }
 
+/* Mainly used for true/false and members from what I've seen */
+code {
+    padding: 0 3px;
+    border: none;
+    border-radius: 0;
+    background-color: var(--inline-code-background);
+    color: var(--text-color);
+    font-weight: 900;
+}
+
 .tpl-enum {
     background-color: transparent;
     color: var(--enum-color);
@@ -367,7 +395,9 @@ pre .tpl-code {
     background-color: transparent;
 }
 
-.mw-highlight pre .mi {
+.mw-highlight pre .mi, 
+.mw-highlight pre .mf,
+.mw-highlight pre .mo {
     color: var(--number-color);
 }
 

@@ -1,0 +1,540 @@
+/* ==UserStyle==
+@name Khronos OpenGL Wiki Dark
+@namespace https://github.com/kociap
+@version 1.0.0
+@author Piotr Kocia (https://github.com/kociap)
+@homepageURL https://github.com/kociap/Dark-Theme-Collection/tree/master/Khronos%20OpenGL%20Wiki
+@license MIT
+==/UserStyle== */
+
+@-moz-document url-prefix(https://www.khronos.org/opengl/wiki) {
+    /* TODO
+     * rem/em everything
+     */
+
+    /* Config */
+    :root {
+        --text-color: #D0D0D0;
+        /* 
+         * blue: #449bff;
+         * lime: #8fff44; 
+         */
+        --link-color: #80e53d;
+        /* purple: #8344ff; */
+        --visited-link-color: #edac3d;
+        --background: #202020;
+        --highlight-background: #2F2F2F;
+        --header-background: #4A4A4A;
+        --table-border-color: #888;
+        --table-border-width: 0.1rem;
+        --code-background: #2F2F2F;
+        --inline-code-background: #303030;
+        --enum-color: #a00080;
+        --number-color: #ffb54b;
+        --comment-color: #62b538;
+        --operator-color: var(--text-color);
+        --keyword-color: #a32828;
+        --string-color: #e4c461;
+        --builtin-type-color: #64e502;
+        --null-keyword-color: var(--enum-color);
+    }
+
+    /* MW generated properties clearing */
+
+    /* Hide page header, navigation, footer and other elements
+     * since we absolutely don't want them in our layout.
+     */
+    #mw-page-base, #mw-head-base, #mw-head, #footer,
+    #top, .mw-indicators, #jump-to-nav, .visualClear,
+    p > span.tpl-vte, div > span.tpl-vte, br {
+        display: none;
+    }
+
+    /* Overwrite styles to defaults */
+    div#mw-panel {
+        position: relative;
+    }
+
+    div#mw-navigation div.portal, 
+    div#mw-navigation div#p-navigation.portal,
+    #mw-panel,
+    div#mw-panel div.portal div.body,
+    div#mw-panel div#p-navigation.portal div.body,
+    div#mw-panel div.portal div.body ul,
+    ul, .mw-content-ltr ul,
+    ol, .mw-content-ltr ol,
+    div#mw-panel div.portal div.body ul li,
+    div#mw-panel div.portal h3,
+    #content,
+    .mw-body .firstHeading,
+    #contentSub,
+    .catlinks,
+    .mw-body-content h2,
+    .mw-body-content h3,
+    dl, dt, .mw-content-ltr dd,
+    .mw-body-content,
+    .mw-body-content p {
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-image: none;
+        font-size: 1em;
+    }
+
+    /* Should make all markers deault to text color */
+    ul {
+        list-style-image: none;
+    }
+
+    /* Reset min-width becuase something apparently sets it and breaks the layout of the page. */
+    div#content.mw-body {
+       min-width: 0; 
+    }
+
+    html, body {
+        height: auto;
+        max-width: 100vw;
+    }
+
+    /* Sanity reset */
+    :root {
+        font-size: 62.5%;
+    }
+
+    body {
+        font-size: 1.6rem;
+    }
+
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        line-height: 150%;
+        color: var(--text-color);
+    }
+
+
+    /* Actual CSS styles */
+
+    /* Default list styles */
+    ul, .mw-content-ltr ul, 
+    ol, .mw-content-ltr ol {
+        padding-left: 1.5em;
+    }
+
+
+    body {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: stretch;
+    }
+
+    #content {
+        flex: 1 1 0;
+        padding: 30px 30px 30px 10px;
+    }
+
+    #mw-navigation {
+        flex: 0 0 16rem;
+    }
+
+
+    /* Colors */
+
+    .mw-parser-output,
+    div#footer ul li,
+    #toc .tocnumber,
+    div#mw-panel div.portal h3,
+    h1, h2, h3, h4, h5, h6,
+    #contentSub {
+        color: var(--text-color);
+    }
+
+    a, .mw-body-content a.external,
+    #mw-panel .portal a, /* navigation panel */
+    .toc a .toctext /* override */{
+        color: #80e53d !important;
+    }
+
+    a:visited, .mw-body-content a.external:visited,
+    #mw-panel .portal a:visited, /* navigation panel */
+    .toc a:visited .toctext /* override */{
+        color: var(--visited-link-color) !important;
+    }
+
+
+    /* Navigation sidebar */
+
+    .mw-wiki-logo {
+        filter: invert(100%);
+    }
+
+    div#mw-panel div.portal,
+    div#mw-panel div#p-navigation.portal {
+        padding: 12px 0 0 15px;
+    }
+
+    div#mw-panel div.portal h3 {
+        font-size: 1.6rem;
+    }
+
+    div#mw-panel div.portal div.body,
+    div#mw-panel div#p-navigation.portal div.body {
+        font-size: 80%;
+    }
+
+
+    /* Content */
+
+    body, #content {
+        background-color: var(--background);
+    }
+
+    #contentSub {
+        font-size: 80%;
+    }
+
+    #mw-content-text {
+        padding: 1rem 0;
+    }
+
+    .mw-parser-output:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .mw-body-content p, pre, dl, .funcdef, .catlinks,
+    .mw-parser-output > div:not([class]), /* warnings, recommendations, etc. */ 
+    .mw-highlight, .mw-parser-output > table.wikitable,
+    .mw-parser-output > ul, .mw-parser-output > ol {
+        /* 100% - width of the infobox - fake padding */
+        max-width: calc(100% - 18em - 1em); 
+    }
+
+    .mw-highlight > pre {
+        max-width: 100%;
+    }
+
+    .mw-body .firstHeading {
+        font-size: 2.6rem;
+    }
+
+    .mw-body-content h2 {
+        padding: 1rem 0 0;
+        font-size: 2.2rem;
+    }
+
+    .mw-body-content p {
+        padding-bottom: 0.5rem;
+    }
+
+    .mw-body-content p:empty {
+        padding: 0;
+    }
+
+    .mw-body-content p > br[style] {
+        display: none;
+    }
+
+    dl {
+        padding-bottom: 0.5rem;
+    }
+
+    dt {
+        padding-top: 0.2rem;
+    }
+
+    .mw-content-ltr dd {
+        padding-left: 1.5rem;
+    }
+
+    /* Math equations are images generated by a tex compiler in black font */
+    .mw-parser-output img[src*="/opengl/wiki_opengl/images/math"] {
+        filter: invert(100%);
+    }
+
+    /* warnings, recommendations, etc. */ 
+    .mw-parser-output > div:not([class])[style~="margin-left:"] {
+        margin: 0 !important;
+        padding-left: 3rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .mw-parser-output > div[style*="float: left;"] {
+        margin: 0 !important;
+        padding-right: 10px;
+    }
+
+    /* Infobox 
+     * All of its styles are inline, hence the !importants.
+     */
+    .infobox {
+        width: 18em !important;
+        margin: 0 !important;
+        /* Elements in the table already have bottom padding */
+        padding-bottom: 0 !important;
+        border: none !important;
+        font-size: 100% !important;
+        background-color: var(--highlight-background) !important;
+    }
+
+    .infobox caption {
+        font-size: 100% !important;
+    }
+
+    .infobox tbody {
+        font-size: 80% !important;
+    }
+
+    .infobox td {
+        text-align: right;
+    }
+
+    /* wikitable */
+
+    table.wikitable {
+        color: var(--text-color);
+        background-color: var(--background);
+        margin: 0;
+    }
+
+    table.wikitable tr th {
+        background-color: var(--highlight-background);
+    }
+
+    table.wikitable,
+    table.wikitable tbody tr th,
+    table.wikitable tbody tr td {
+        border: var(--table-border-width) solid var(--table-border-color);
+    }
+
+    table.wikitable + p {
+        padding-top: 0.5rem;
+    }
+
+    /* Category links */
+    .catlinks, .side-list, .side-list-contents, #toc {
+        background-color: var(--highlight-background);
+        border: none;
+    }
+
+    .catlinks {
+        padding: 0.5rem 1rem;
+    }
+
+    /* Side list */
+    .side-list {
+        margin: 1em 0;
+    }
+
+    .side-list hr {
+        display: none;
+    }
+
+    .side-list div:first-child {
+        padding: 3px 7px;
+    }
+
+    .side-list .side-list-contents {
+        border: none;
+        border-top: 2px solid #505050;
+    }
+
+    .side-list-contents ul {
+        list-style-type: disc;
+        list-style-image: none;
+    }
+
+    /* stub (great name for the TODO section) */
+    .stub {
+        background-color: #2F2F2F !important;
+        border: none !important;
+        padding: 2px 5px;
+    }
+
+    .stub td {
+        padding: 0;
+    }
+
+    /* Inline code */
+
+    .tpl-code {
+        background-color: var(--inline-code-background);
+        padding: 0 3px;
+    }
+
+    /* Mainly used for true/false and members from what I've seen */
+    code {
+        padding: 0 3px;
+        border: none;
+        border-radius: 0;
+        background-color: var(--inline-code-background);
+        color: var(--text-color);
+        font-weight: 900;
+    }
+
+    .tpl-enum {
+        background-color: transparent;
+        color: var(--enum-color);
+    }
+
+    /* Code block */
+
+    pre {
+        background-color: var(--code-background);
+        padding: 0.5rem 1rem;
+        border: none;
+        color: var(--text-color);
+        line-height: 1.5rem;
+    }
+
+    .mw-body-content pre + p {
+        padding-top: 0.5rem;
+    }
+
+    pre .tpl-code {
+        background-color: transparent;
+    }
+
+    /* Code highlighting */
+
+    .mw-highlight {
+        padding-bottom: 0.5rem;
+        /* code blocks glitch when there's side-list on the right and show white background */
+        background-color: transparent;
+    }
+
+    .mw-highlight pre .mi, 
+    .mw-highlight pre .mf,
+    .mw-highlight pre .mo {
+        color: var(--number-color);
+    }
+
+    .mw-highlight pre .c1 {
+        color: var(--comment-color);
+    }
+
+    .mw-highlight pre .o {
+        color: var(--operator-color);
+    }
+
+    .mw-highlight pre .k {
+        color: var(--keyword-color);
+    }
+
+    .mw-highlight pre .s {
+        color: var(--string-color);
+    }
+
+    .mw-highlight pre .kt {
+        color: var(--builtin-type-color);
+    }
+
+    .mw-highlight pre .nb {
+        color: var(--null-keyword-color);
+    }
+
+    /* Function definition */
+
+    .funcdef {
+        padding-left: 1rem;
+        overflow-wrap: break-word;
+        background: var(--code-background);
+        border-color: var(--link-color);
+    }
+
+    .funcdef p {
+        padding: 0;
+    }
+
+    .funcdef + p {
+        padding-top: 0.5rem;
+    }
+
+    .funcdef + dl {
+        padding-top: 0.5rem;
+    }
+
+    .funcdef .tpl-code {
+        background-color: transparent;
+    }
+}
+
+/* Main Page */
+@-moz-document url("https://www.khronos.org/opengl/wiki"), url("https://www.khronos.org/opengl/wiki/Main_Page") {
+    #mw-content-text {
+        padding: 0;
+    }
+    
+    .mw-parser-output > p {
+        display: none;
+    }
+
+    .mw-parser-output div {
+        padding: 0;
+        margin: 0 !important;
+        border: none !important;
+    }
+    
+    .mw-body-content .mw-parser-output > div {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 0 1em 0 !important;
+    }
+    
+    .mw-parser-output > div > div {
+        background: var(--highlight-background);
+    }
+    
+    .mw-parser-output > div .floatright {
+        padding-left: 1em;
+        filter: invert(100%);
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+    
+    .mw-parser-output tr {
+        padding-bottom: 1em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    
+    .mw-parser-output table:last-of-type tr {
+        padding: 0;
+    }
+    
+    .mw-parser-output tr > td {
+        /* 3 elements with 1em spacing in-between */
+        flex: 0 1 calc((100% - 2em) / 3);
+    }
+        
+    .mw-parser-output table:last-of-type tr > td {
+        /* 2 elements with 1 em spacing between */
+        flex: 0 1 calc(50% - 0.5em);
+    }
+    
+    .mw-parser-output td > div {
+        width: 100% !important;
+        height: 100%;
+        background: var(--highlight-background);
+    }
+    
+    .mw-parser-output div h2 {
+        padding: 5px 10px !important;
+        border: none !important;
+        background: var(--header-background) !important;
+    }
+    
+    .mw-parser-output td > div > div {
+        padding: 5px 15px !important;
+    }
+    
+    .mw-parser-output ul {
+        padding-left: 1em;
+    }
+}
